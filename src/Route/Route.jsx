@@ -4,6 +4,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Campaign from "../Pages/Campaign/Campaign";
 import Donations from "../Pages/Donation/Donations";
+import PureComponent from "../Pages/Statistics/Statistics";
 
 const Route = createBrowserRouter([
    {
@@ -13,7 +14,8 @@ const Route = createBrowserRouter([
       children: [
          {
             path: '/',
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: () => fetch(`data.json`)
          },
          {
             path: '/campaign/:id',
@@ -27,7 +29,7 @@ const Route = createBrowserRouter([
          },
          {
             path: '/statistics',
-            element: <h1>Statistics</h1>
+            element: <PureComponent></PureComponent>
          }
       ]
    }

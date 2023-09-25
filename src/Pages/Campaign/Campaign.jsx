@@ -1,10 +1,8 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { getDonationItem, saveDonationItem } from "../../LocalStorage";
 import swal from 'sweetalert';
-import { useState } from "react";
 
 const Campaign = () => {
-   const [isHave, setIsHave] = useState(false)
    const campaignData = useLoaderData()
    const {id} = useParams()
    const idInt = parseInt(id)
@@ -13,12 +11,16 @@ const Campaign = () => {
    const {categoryImage, price, titleColor, title, description} = findItem
 
    const handleDonate = () => {
-      saveDonationItem(idInt)
 
       const localItem = getDonationItem()
-      
+
+      if(localItem.includes(idInt)){
+         swal("Opps!", "You Already Donated!", "error");
+      } else {
+         swal("Good job!", "You Have Donated Successfully", "success");
+      }
+      saveDonationItem(idInt)      
    }
-   console.log(isHave);
 
    return (
       <div className="max-w-6xl mx-auto py-10">
