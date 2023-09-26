@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Legend } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import { useEffect, useState } from 'react';
 import './Statistics.css'
 
@@ -40,24 +40,26 @@ function Statistics() {
 
   return (
       <div className='max-w-100%'>
-        <PieChart width={600} height={400} className='mx-0 md:mx-auto'>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={130}
-            fill="#8884d8"
-            dataKey="value"
-            className='focus:outline-none w-20'
-          >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Legend/>
-        </PieChart>
+        <ResponsiveContainer width="100%" height={350} >
+          <PieChart width={600} height={400} className='mx-0 md:mx-auto'>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={130}
+              fill="#8884d8"
+              dataKey="value"
+              className='focus:outline-none w-20'
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Legend/>
+          </PieChart>
+        </ResponsiveContainer>
       </div>
   );
 }

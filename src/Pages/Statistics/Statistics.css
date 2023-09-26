@@ -1,5 +1,6 @@
 .recharts-legend-wrapper{
-   width: 600px!important;
+   width: 100%!important;
+   margin: 0 auto;
 }
 .recharts-default-legend{
    display: flex;
@@ -31,19 +32,16 @@
    color: #0B0B0B!important;
 }
 
-/* @media screen and (max-width: 425px)  {
-   .recharts-wrapper svg{
-      width: 400px!important;
-   }
+@media screen and (max-width: 425px)  {
    .recharts-default-legend{
       display: flex!important;
       flex-direction: column!important;
       gap: 10px;
       align-items: center;
    }
-   .legend-item-0 .recharts-surface,
-   .legend-item-1 .recharts-surface{
-      width: 200px!important;
-      vertical-align: middle;
+   .recharts-legend-wrapper{
+      width: 100%!important;
+      margin: 0 auto;
+      display: block
    }
-} */
+}
