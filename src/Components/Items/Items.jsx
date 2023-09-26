@@ -6,17 +6,12 @@ const Items = ({data}) => {
    const [items, setItems] = useState([])
 
    useEffect(() => {
-      fetch('data.json')
+      fetch('https://ashrafulrifaz.github.io/donation-campaign-data/data.json')
          .then(res => res.json())
          .then(data => setItems(data))
    },[])
 
    const healthCategory = items.filter(item => item.category == data.toLowerCase());
-   // if(healthCategory.length > 0){
-   //    console.log(healthCategory);
-   // }
-
-   // console.log(searchItems);
 
    return (
       <div className="py-10 max-w-[85%] mx-auto bg-white">

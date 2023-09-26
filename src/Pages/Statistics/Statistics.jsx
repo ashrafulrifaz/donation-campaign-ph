@@ -23,7 +23,7 @@ function Statistics() {
   const [myDonation, setMyDonation] = useState([]);
 
   useEffect(() => {
-    fetch('data.json')
+    fetch('https://ashrafulrifaz.github.io/donation-campaign-data/data.json')
       .then(res => res.json())
       .then(data => setTotalDonation(data.length))
 
