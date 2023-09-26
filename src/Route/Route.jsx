@@ -4,7 +4,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Campaign from "../Pages/Campaign/Campaign";
 import Donations from "../Pages/Donation/Donations";
-import PureComponent from "../Pages/Statistics/Statistics";
+import Statistics from "../Pages/Statistics/Statistics";
 
 const Route = createBrowserRouter([
    {
@@ -29,7 +29,7 @@ const Route = createBrowserRouter([
          },
          {
             path: '/statistics',
-            element: <PureComponent></PureComponent>
+            element: <Statistics></Statistics>
          }
       ]
    }

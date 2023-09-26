@@ -5,7 +5,7 @@ import './Header.css'
 
 const Header = () => {
    return (
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[85%] mx-auto bg-transparent">
          <div className="py-6 flex justify-between items-center">
             <div>
                <Link to="/"><img src={Logo} alt="LOGO" className='w-4/6' /></Link>

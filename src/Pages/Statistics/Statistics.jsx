@@ -1,51 +1,66 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Legend } from 'recharts';
+import { useEffect, useState } from 'react';
+import './Statistics.css'
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
+const COLORS = ['#FF444A', '#00C49F']
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
+      {`${(percent * 100).toFixed(1)}%`}
     </text>
   );
 };
 
-export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
+function Statistics() {
+  const [totalDonation, setTotalDonation] = useState(0);
+  const [myDonation, setMyDonation] = useState([]);
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
+  useEffect(() => {
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => setTotalDonation(data.length))
+
+    const getDonationFromLocal = JSON.parse(localStorage.getItem('item')) || []
+    setMyDonation(getDonationFromLocal.length)
+  }, [])
+
+  const data = [
+    { name: 'Total Dontaion', value: totalDonation - myDonation },
+    { name: 'Your Donation', value: myDonation }
+  ];
+
+  console.log(data[0].value, data[1].value);
+
+  return (
+      <div className='max-w-100%'>
+        <PieChart width={600} height={400} className='mx-0 md:mx-auto'>
           <Pie
             data={data}
             cx="50%"
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={130}
             fill="#8884d8"
             dataKey="value"
+            className='focus:outline-none w-20'
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
+          <Legend/>
         </PieChart>
-      </ResponsiveContainer>
-    );
-  }
+      </div>
+  );
 }
+
+
+export default Statistics;

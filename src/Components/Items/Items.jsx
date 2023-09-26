@@ -19,14 +19,14 @@ const Items = ({data}) => {
    // console.log(searchItems);
 
    return (
-      <div className="py-10 max-w-6xl mx-auto">
+      <div className="py-10 max-w-[85%] mx-auto bg-white">
          {healthCategory.length > 0 ? 
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                {
                   healthCategory.map(item => <Item key={item.id} item={item}></Item>)
                }
             </div> : 
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                {
                   items.map(item => <Item key={item.id} item={item}></Item>)
                }
