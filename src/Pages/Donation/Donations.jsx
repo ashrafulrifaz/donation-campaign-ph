@@ -30,8 +30,8 @@ const Donations = () => {
             : 
             <p className="text-center font-medium text-2xl">You have not donated yet</p>}
          </div>
-         <div className="py-8">
-            <button onClick={() => setIsShow(!isShow)} className={`mx-auto rounded-md bg-[#FF444A] text-white px-5 py-2 text-sm ${donateItems.length > 4 ? 'block' : 'hidden'}`}>{isShow ? 'Show Less' : 'Show More'}</button>
+         <div className={`py-8 ${isShow ? 'hidden' : 'block'}`}>
+            <button onClick={() => setIsShow(!isShow)} className={`mx-auto rounded-md bg-[#FF444A] text-white px-5 py-2 text-sm ${donateItems.length > 4 ? 'block' : 'hidden'}`}>Show All</button>
          </div>
       </div>
    );
